@@ -63,7 +63,7 @@ jobs:
         if: matrix.os == 'windows-2022'
         shell: powershell
         run: |
-          conda build --debug .conda.tensorflow --output-folder C:\c\build.tensorflow -c conda-forge
+          conda build --debug .conda.tensorflow --output-folder C:\c\build.tensorflow -c conda-forge -p C:\c\tf
         env:
           CONDA_PREFIX: C:\c\tf
       # Build conda package (Ubuntu)
