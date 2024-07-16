@@ -39,12 +39,20 @@ jobs:
           New-Item -ItemType Directory -Force -Path C:\c
 
       # Setup Miniconda
-      - name: Setup Miniconda
+      # https://github.com/conda-incubator/setup-miniconda?tab=readme-ov-file#use-a-different-environment-name-or-path
+      - name: Setup Miniconda (Windows)
         uses: conda-incubator/setup-miniconda@v3.0.3
         with:
           python-version: "3.10"
           environment-file: environment.tensorflow.yml
           activate-environment: C:\c\tf
+
+      - name: Setup Miniconda (Ubuntu)
+        uses: conda-incubator/setup-miniconda@v3.0.3
+        with:
+          python-version: "3.10"
+          environment-file: environment.tensorflow.yml
+          activate-environment: tf
 
       - name: Print environment info
         shell: bash -l {0}
@@ -65,7 +73,7 @@ jobs:
         if: matrix.os == 'ubuntu-22.04'
         shell: bash -l {0}
         run: |
-          conda build .conda.tensorflow --output-folder build.tensorflow -c conda-forge
+          conda build --debug .conda.tensorflow --output-folder build.tensorflow -c conda-forge
 
       # # Upload conda package
       # - name: Upload to Anaconda (Windows)
