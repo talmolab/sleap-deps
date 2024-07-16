@@ -31,15 +31,12 @@ jobs:
       #     reg add HKLM\SYSTEM\CurrentControlSet\Control\FileSystem /v LongPathsEnabled /t REG_DWORD /d 1 /f
       #   shell: powershell
 
-      # Set CONDA_PREFIX on Windows to a shorter path
-      - name: Set CONDA_PREFIX (Windows)
+      # Make conda prefix directory (Windows)
+      - name: Make conda prefix directory (Windows)
         if: matrix.os == 'windows-2022'
         shell: powershell
         run: |
           New-Item -ItemType Directory -Force -Path C:\c
-          conda config --set envs_dirs "C:\c\envs"
-        env:
-          CONDA_PREFIX: C:\c\tf
 
       # Setup Miniconda
       - name: Setup Miniconda
@@ -47,17 +44,14 @@ jobs:
         with:
           python-version: "3.10"
           environment-file: environment.tensorflow.yml
-          activate-environment: tf
-        env:
-          CONDA_PREFIX: C:\c\tf
+          activate-environment: C:\c\tf
 
       - name: Print environment info
         shell: bash -l {0}
         run: |
           which python
           conda info
-        env:
-          CONDA_PREFIX: C:\c\tf
+          conda list
 
       # Build conda package (Windows)
       - name: Build conda package (Windows)
@@ -65,8 +59,7 @@ jobs:
         shell: powershell
         run: |
           conda build --debug .conda.tensorflow --output-folder C:\c\build.tensorflow -c conda-forge
-        env:
-          CONDA_PREFIX: C:\c\tf
+
       # Build conda package (Ubuntu)
       - name: Build conda package (Ubuntu)
         if: matrix.os == 'ubuntu-22.04'
