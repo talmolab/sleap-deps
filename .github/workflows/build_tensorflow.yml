@@ -101,7 +101,7 @@ jobs:
       - name: Upload to Anaconda (Windows)
         if: matrix.os == 'windows-2022'
         env:
-          ANACONDA_TOKEN: ${{ secrets.ANACONDA_SLEAP_DEPS_TOKEN }}
+          ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_SLEAP_DEPS_TOKEN }}
         shell: powershell
         run: |
           anaconda -v upload "C:\c\build.tensorflow\win-64\*.tar.bz2" --label dev --user sleap-deps
@@ -109,7 +109,7 @@ jobs:
       - name: Upload to Anaconda (Ubuntu)
         if: matrix.os == 'ubuntu-22.04'
         env:
-          ANACONDA_TOKEN: ${{ secrets.ANACONDA_SLEAP_DEPS_TOKEN }}
+          ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_SLEAP_DEPS_TOKEN }}
         shell: bash -l {0}
         run: |
           anaconda -v upload build.tensorflow/linux-64/*.tar.bz2 --label dev --user sleap-deps
