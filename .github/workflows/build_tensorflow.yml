@@ -45,13 +45,13 @@ jobs:
           which python
           conda info
 
-      # Create a shortened link on Windows
-      - name: Create shortened link (Windows)
-        if: matrix.os == 'windows-2022'
-        shell: powershell
-        run: |
-          New-Item -ItemType Directory -Force -Path C:\c
-          robocopy $PWD C:\c /E /NFL /NDL /NJH /NJS /NC /NS /NP
+      # # Create a shortened link on Windows
+      # - name: Create shortened link (Windows)
+      #   if: matrix.os == 'windows-2022'
+      #   shell: powershell
+      #   run: |
+      #     New-Item -ItemType Directory -Force -Path C:\c
+      #     robocopy $PWD C:\c /E /NFL /NDL /NJH /NJS /NC /NS /NP
 
       # Build conda package
       - name: Build conda package (Windows)
@@ -59,7 +59,7 @@ jobs:
         shell: powershell
         run: |
           subst X: $PWD 
-          conda build C:\c\.conda.tensorflow --output-folder C:\c\build.tensorflow -c conda-forge
+          conda build X:\.conda.tensorflow --output-folder X:\build.tensorflow -c conda-forge
       - name: Build conda package (Ubuntu)
         if: matrix.os == 'ubuntu-22.04'
         shell: bash -l {0}
