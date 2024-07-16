@@ -22,7 +22,7 @@ jobs:
     steps:
       # Checkout the repository
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       # Enable Windows Long Path Support
       - name: Enable Windows Long Path Support
