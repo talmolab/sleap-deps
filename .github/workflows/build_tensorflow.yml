@@ -41,6 +41,7 @@ jobs:
       # Setup Miniconda
       # https://github.com/conda-incubator/setup-miniconda?tab=readme-ov-file#use-a-different-environment-name-or-path
       - name: Setup Miniconda (Windows)
+        if: matrix.os == 'windows-2022'
         uses: conda-incubator/setup-miniconda@v3.0.3
         with:
           python-version: "3.10"
@@ -48,6 +49,7 @@ jobs:
           activate-environment: C:\c\tf
 
       - name: Setup Miniconda (Ubuntu)
+        if: matrix.os == 'ubuntu-22.04'
         uses: conda-incubator/setup-miniconda@v3.0.3
         with:
           python-version: "3.10"
