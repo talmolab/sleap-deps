@@ -22,14 +22,14 @@ jobs:
     steps:
       # Checkout the repository
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      # Enable Windows Long Path Support
-      - name: Enable Windows Long Path Support
-        if: matrix.os == 'windows-2022'
-        run: |
-          reg add HKLM\SYSTEM\CurrentControlSet\Control\FileSystem /v LongPathsEnabled /t REG_DWORD /d 1 /f
-        shell: powershell
+      # # Enable Windows Long Path Support
+      # - name: Enable Windows Long Path Support
+      #   if: matrix.os == 'windows-2022'
+      #   run: |
+      #     reg add HKLM\SYSTEM\CurrentControlSet\Control\FileSystem /v LongPathsEnabled /t REG_DWORD /d 1 /f
+      #   shell: powershell
 
       # Setup Miniconda
       - name: Setup Miniconda
