@@ -24,13 +24,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # # Enable Windows Long Path Support
-      # - name: Enable Windows Long Path Support
-      #   if: matrix.os == 'windows-2022'
-      #   run: |
-      #     reg add HKLM\SYSTEM\CurrentControlSet\Control\FileSystem /v LongPathsEnabled /t REG_DWORD /d 1 /f
-      #   shell: powershell
-
       # Make conda prefix directory (Windows)
       - name: Make conda prefix directory (Windows)
         if: matrix.os == 'windows-2022'
@@ -98,6 +91,7 @@ jobs:
       #     anaconda logout
 
         # Upload conda package
+        # https://github.com/anaconda/anaconda-client/issues/529
       - name: Upload to Anaconda (Windows)
         if: matrix.os == 'windows-2022'
         env:
