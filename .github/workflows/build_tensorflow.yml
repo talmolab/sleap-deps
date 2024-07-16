@@ -31,35 +31,42 @@ jobs:
       #     reg add HKLM\SYSTEM\CurrentControlSet\Control\FileSystem /v LongPathsEnabled /t REG_DWORD /d 1 /f
       #   shell: powershell
 
+      # Set CONDA_PREFIX on Windows to a shorter path
+      - name: Set CONDA_PREFIX (Windows)
+        if: matrix.os == 'windows-2022'
+        shell: powershell
+        run: |
+          New-Item -ItemType Directory -Force -Path C:\c
+        env:
+          CONDA_PREFIX: C:\c\tf
+
       # Setup Miniconda
       - name: Setup Miniconda
-        # https://github.com/conda-incubator/setup-miniconda
         uses: conda-incubator/setup-miniconda@v3.0.3
         with:
           python-version: "3.10"
           environment-file: environment.tensorflow.yml
           activate-environment: tf
+        env:
+          CONDA_PREFIX: C:\c\tf
+
       - name: Print environment info
         shell: bash -l {0}
         run: |
           which python
           conda info
+        env:
+          CONDA_PREFIX: C:\c\tf
 
-      # # Create a shortened link on Windows
-      # - name: Create shortened link (Windows)
-      #   if: matrix.os == 'windows-2022'
-      #   shell: powershell
-      #   run: |
-      #     New-Item -ItemType Directory -Force -Path C:\c
-      #     robocopy $PWD C:\c /E /NFL /NDL /NJH /NJS /NC /NS /NP
-
-      # Build conda package
+      # Build conda package (Windows)
       - name: Build conda package (Windows)
         if: matrix.os == 'windows-2022'
         shell: powershell
         run: |
-          subst X: $PWD 
-          conda build X:\.conda.tensorflow --output-folder X:\build.tensorflow -c conda-forge
+          conda build .conda.tensorflow --output-folder C:\c\build.tensorflow -c conda-forge
+        env:
+          CONDA_PREFIX: C:\c\envs\tf
+      # Build conda package (Ubuntu)
       - name: Build conda package (Ubuntu)
         if: matrix.os == 'ubuntu-22.04'
         shell: bash -l {0}
