@@ -1,4 +1,4 @@
-name: build_tensorflow
+name: tf
 
 channels:
   - conda-forge
@@ -10,5 +10,3 @@ dependencies:
 - anaconda-client
 - conda-verify
 - pip
-
-- pip:
