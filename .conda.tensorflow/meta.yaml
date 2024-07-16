@@ -2,7 +2,7 @@
 
 package:
   name: tensorflow
-  version: 2.9.0a0
+  version: 2.9.2a0
 
 about:
   home: https://tensorflow.org
@@ -26,12 +26,12 @@ requirements:
     - python>=3.10.0,<3.11.0 # Trying python 3.10
     - numpy
     - h5py
-    - protobuf # 3.20.3 is what pip pulls in
-    - certifi # 2024.2.28 is what pip pulls in
-    - importlib-metadata # 6.7.0 is what pip pulls in
-    - six # 1.16.0 is what pip pulls in
-    - typing-extensions # 4.7.1 is what pip pulls in
-    - zipp # 3.15.0 is what pip pulls in
+    - protobuf
+    - certifi
+    - importlib-metadata
+    - six
+    - typing-extensions
+    - zipp
     - pip
 
   run:
@@ -46,6 +46,6 @@ requirements:
     - zipp
     - pip
 
-# test:
-#   imports:
-#     - tensorflow
+test:
+  imports:
+    - tensorflow
