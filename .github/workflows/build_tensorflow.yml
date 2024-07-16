@@ -37,6 +37,7 @@ jobs:
         shell: powershell
         run: |
           New-Item -ItemType Directory -Force -Path C:\c
+          conda config --set envs_dirs "C:\c\envs"
         env:
           CONDA_PREFIX: C:\c\tf
 
@@ -63,7 +64,7 @@ jobs:
         if: matrix.os == 'windows-2022'
         shell: powershell
         run: |
-          conda build --debug .conda.tensorflow --output-folder C:\c\build.tensorflow -c conda-forge -p C:\c\tf
+          conda build --debug .conda.tensorflow --output-folder C:\c\build.tensorflow -c conda-forge
         env:
           CONDA_PREFIX: C:\c\tf
       # Build conda package (Ubuntu)
