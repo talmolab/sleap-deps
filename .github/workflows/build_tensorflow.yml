@@ -65,7 +65,7 @@ jobs:
         run: |
           conda build .conda.tensorflow --output-folder C:\c\build.tensorflow -c conda-forge
         env:
-          CONDA_PREFIX: C:\c\envs\tf
+          CONDA_PREFIX: C:\c\tf
       # Build conda package (Ubuntu)
       - name: Build conda package (Ubuntu)
         if: matrix.os == 'ubuntu-22.04'
