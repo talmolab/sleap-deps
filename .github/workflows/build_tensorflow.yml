@@ -50,8 +50,8 @@ jobs:
         if: matrix.os == 'windows-2022'
         shell: powershell
         run: |
-          conda activate tf
-          conda build .conda.tensorflow --output-folder build.tensorflow -c conda-forge
+          subst X $PWD 
+          conda build X\.conda.tensorflow --output-folder build.tensorflow -c conda-forge
       - name: Build conda package (Ubuntu)
         if: matrix.os == 'ubuntu-22.04'
         shell: bash -l {0}
