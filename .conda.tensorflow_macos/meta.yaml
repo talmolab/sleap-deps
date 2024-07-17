@@ -7,9 +7,7 @@ package:
 about:
   home: https://tensorflow.org
   license: Apache License
-  summary: 'TensorFlow conda package based on the PyPI wheels.
-
-  For GPU support, install cudatoolkit 11.3.1 and cudnn 8.2.1 which are available as conda packages on the default channel.'
+  summary: 'TensorFlow conda package based on the PyPI wheels.'
 
 build:
   number: 4
