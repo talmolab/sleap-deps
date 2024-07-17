@@ -79,7 +79,7 @@ jobs:
           ANACONDA_LOGIN: ${{ secrets.ANACONDA_PASSWORD }}
         shell: powershell
         run: |
-          echo "yes" | anaconda login --username sleap-deps --password "$env:ANACONDA_LOGIN"
+          anaconda login --username sleap-deps --password "$env:ANACONDA_LOGIN"
           anaconda -v upload "C:\c\build.tensorflow\win-64\*.tar.bz2" --label dev --user sleap-deps
           anaconda logout
       # - name: Upload to Anaconda (Ubuntu)
