@@ -57,19 +57,19 @@ jobs:
           conda info
           conda list
 
-      # # Build conda package (Windows)
-      # - name: Build conda package (Windows)
-      #   if: matrix.os == 'windows-2022'
-      #   shell: powershell
-      #   run: |
-      #     conda build --debug .conda.tensorflow --output-folder C:\c\build.tensorflow -c conda-forge
+      # Build conda package (Windows)
+      - name: Build conda package (Windows)
+        if: matrix.os == 'windows-2022'
+        shell: powershell
+        run: |
+          conda build --debug .conda.tensorflow --output-folder C:\c\build.tensorflow -c conda-forge
 
-      # # Build conda package (Ubuntu)
-      # - name: Build conda package (Ubuntu)
-      #   if: matrix.os == 'ubuntu-22.04'
-      #   shell: bash -l {0}
-      #   run: |
-      #     conda build --debug .conda.tensorflow --output-folder build.tensorflow -c conda-forge
+      # Build conda package (Ubuntu)
+      - name: Build conda package (Ubuntu)
+        if: matrix.os == 'ubuntu-22.04'
+        shell: bash -l {0}
+        run: |
+          conda build --debug .conda.tensorflow --output-folder build.tensorflow -c conda-forge
 
       # Upload conda package
       # Using `ANACONDA_API_TOKEN` results in "Error:  ('Authorization token is no longer valid', 401)" for Windows upload only
