@@ -1,16 +1,16 @@
 # Ref: https://docs.conda.io/projects/conda-build/en/latest/resources/define-metadata.html
 
 package:
-  name: tensorflow
+  name: tensorflow-macos
   version: 2.9.2a0
 
 about:
   home: https://tensorflow.org
   license: Apache License
-  summary: 'TensorFlow conda package based on the PyPI wheels.'
+  summary: 'TensorFlow conda package based on the PyPI wheels for Apple Silicon Macs.'
 
 build:
-  number: 4
+  number: 0
 
 source:
   path: ../
@@ -20,29 +20,27 @@ requirements:
     - '{{ compiler("c") }}'
     - '{{ compiler("cxx") }}'
 
-  host:
-    - python>=3.10.0,<3.11.0 # Trying python 3.10
-    - numpy
-    - h5py
-    - protobuf
-    - certifi
-    - importlib-metadata
-    - six
-    - typing-extensions
-    - zipp
-    - pip
+requirements:
+  host:  
+    - conda-forge::python >=3.10.0,<3.11.0
+    # - anaconda::numpy >=1.19.5,<1.23.0
+    - conda-forge::numpy >=1.16.5 # Scipy 1.7.0 requires numpy >=1.16.5
+    - conda-forge::pip
+    - conda-forge::keras <2.10.0,>=2.9.0rc0  # Required by tensorflow-macos
+
+    # Only the packages above are required to build, but listing them all ensures no 
+    # unnecessary pypi packages are installed via the build script (build.sh)
+
+    # - conda-forge::h5py
 
   run:
-    - python>=3.10.0,<3.11.0 # Trying python 3.10
-    - numpy
-    - h5py
-    - protobuf
-    - certifi
-    - importlib-metadata
-    - six
-    - typing-extensions
-    - zipp
-    - pip
+    - conda-forge::python >=3.10.0,<3.11.0
+    # - anaconda::numpy >=1.19.5,<1.23.0
+    - conda-forge::numpy >=1.16.5 # Scipy 1.7.0 requires numpy >=1.16.5
+    - conda-forge::pip
+    - conda-forge::keras <2.10.0,>=2.9.0rc0  # Required by tensorflow-macos
+
+    # - conda-forge::h5py
 
 test:
   imports:
