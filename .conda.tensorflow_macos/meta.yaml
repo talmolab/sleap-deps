@@ -23,7 +23,6 @@ requirements:
     - conda-forge::cachetools <6.0,>=2.0.0
     - conda-forge::certifi >=2017.4.17
     - conda-forge::charset-normalizer <4,>=2
-    # - conda-forge::flatbuffers <2,>=1.12
     - conda-forge::gast <=0.4.0,>=0.2.1
     - conda-forge::google-auth <3,>=1.6.3
     - conda-forge::google-auth-oauthlib <0.5,>=0.4.1
@@ -33,7 +32,6 @@ requirements:
     - conda-forge::idna <4,>=2.5
     - conda-forge::keras <2.10.0,>=2.9.0rc0 # Required for tensorflow-macos
     - conda-forge::keras-preprocessing >=1.1.1
-    # - conda-forge::libclang >=13.0.0 # conda-forge::libclang is not available
     - anaconda::markdown >=2.6.8
     - conda-forge::MarkupSafe >=2.1.1
     - conda-forge::numpy >=1.16.5,<2.0 # tensorflow compiled with numpy 1.x
@@ -48,11 +46,6 @@ requirements:
     - conda-forge::requests <3,>=2.21.0
     - conda-forge::requests-oauthlib >=0.7.0
     - conda-forge::rsa <5,>=3.1.4
-    # - conda-forge::six >=1.12.0
-    # - conda-forge::tensorboard <2.10,>=2.9
-    # - conda-forge::tensorboard-data-server <0.7.0,>=0.6.0
-    # - conda-forge::tensorboard-plugin-wit >=1.6.0
-    # - conda-forge::tensorflow-estimator <2.10.0,>=2.9.0rc0
     - conda-forge::termcolor >=1.1.0
     - conda-forge::typing-extensions >=3.6.6
     - conda-forge::urllib3 <3,>=1.21.1
@@ -65,7 +58,6 @@ requirements:
     - conda-forge::cachetools <6.0,>=2.0.0
     - conda-forge::certifi >=2017.4.17
     - conda-forge::charset-normalizer <4,>=2
-    # - conda-forge::flatbuffers <2,>=1.12 # conda-forge::flatbuffers is not available
     - conda-forge::gast <=0.4.0,>=0.2.1
     - conda-forge::google-auth <3,>=1.6.3
     - conda-forge::google-auth-oauthlib <0.5,>=0.4.1
@@ -73,9 +65,8 @@ requirements:
     - conda-forge::grpcio <2.0,>=1.24.3
     - conda-forge::h5py >=2.9.0
     - conda-forge::idna <4,>=2.5
-    - conda-forge::keras <2.10.0,>=2.9.0rc0
-    - conda-forge::keras-preprocessing >=1.1.1 # Required for tensorflow-macos
-    # - conda-forge::libclang >=13.0.0 # conda-forge::libclang is not available
+    - conda-forge::keras <2.10.0,>=2.9.0rc0 # Required for tensorflow-macos
+    - conda-forge::keras-preprocessing >=1.1.1
     - anaconda::markdown >=2.6.8
     - conda-forge::MarkupSafe >=2.1.1
     - conda-forge::numpy >=1.16.5,<2.0 # tensorflow compiled with numpy 1.x
@@ -90,16 +81,20 @@ requirements:
     - conda-forge::requests <3,>=2.21.0
     - conda-forge::requests-oauthlib >=0.7.0
     - conda-forge::rsa <5,>=3.1.4
-    # - conda-forge::six >=1.12.0 # conda-forge::six is not available
-    # - conda-forge::tensorboard <2.10,>=2.9
-    # - conda-forge::tensorboard-data-server <0.7.0,>=0.6.0
-    # - conda-forge::tensorboard-plugin-wit >=1.6.0
-    # - conda-forge::tensorflow-estimator <2.10.0,>=2.9.0rc0
     - conda-forge::termcolor >=1.1.0
     - conda-forge::typing-extensions >=3.6.6
     - conda-forge::urllib3 <3,>=1.21.1
     - conda-forge::werkzeug >=1.0.1
     - conda-forge::wrapt >=1.11.0
+
+    # the following are pip installed, even when conda-forge versions are available
+    # - conda-forge::flatbuffers <2,>=1.12
+    # - conda-forge::libclang >=13.0.0
+    # - conda-forge::six >=1.12.0
+    # - conda-forge::tensorboard <2.10,>=2.9
+    # - conda-forge::tensorboard-data-server <0.7.0,>=0.6.0
+    # - conda-forge::tensorboard-plugin-wit >=1.6.0
+    # - conda-forge::tensorflow-estimator <2.10.0,>=2.9.0rc0
 
 test:
   imports:
