@@ -34,7 +34,7 @@ requirements:
     - conda-forge::keras-preprocessing >=1.1.1
     - conda-forge::libclang >=13.0.0
     - conda-forge::MarkupSafe >=2.1.1
-    - conda-forge::numpy >=1.16.5
+    - conda-forge::numpy >=1.16.5,<2.0
     - conda-forge::oauthlib >=3.0.0
     - conda-forge::opt-einsum >=2.3.2
     - conda-forge::packaging
@@ -75,7 +75,7 @@ requirements:
     - conda-forge::keras-preprocessing >=1.1.1 # Required for tensorflow-macos
     - conda-forge::libclang >=13.0.0
     - conda-forge::MarkupSafe >=2.1.1
-    - conda-forge::numpy >=1.16.5
+    - conda-forge::numpy >=1.16.5,<2.0
     - conda-forge::oauthlib >=3.0.0
     - conda-forge::opt-einsum >=2.3.2
     - conda-forge::packaging
