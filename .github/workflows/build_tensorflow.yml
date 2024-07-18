@@ -81,14 +81,14 @@ jobs:
           conda build --debug .conda.tensorflow_macos --output-folder build.tensorflow_macos -c conda-forge
 
       # Upload conda package
-      # Using `ANACONDA_API_TOKEN` results in "Error:  ('Authorization token is no longer valid', 401)" for Windows upload only
+      # Using `ANACONDA_API_TOKEN` results in "Error:  ('Authorization token is no longer valid', 401)" for Windows and MacOS
       # - name: Upload to Anaconda (Windows)
       #   if: matrix.os == 'windows-2022'
       #   env:
-      #     ANACONDA_LOGIN: ${{ secrets.ANACONDA_PASSWORD }}
+      #     ANACONDA_PASSWORD: ${{ secrets.ANACONDA_PASSWORD }}
       #   shell: powershell
       #   run: |
-      #     anaconda login --username sleap-deps --password "$env:ANACONDA_LOGIN"
+      #     anaconda login --username sleap-deps --password "$env:ANACONDA_PASSWORD"
       #     anaconda -v upload "C:\c\build.tensorflow\win-64\*.tar.bz2" --label dev --user sleap-deps
       #     anaconda logout
       # - name: Upload to Anaconda (Ubuntu)
@@ -100,30 +100,12 @@ jobs:
       #     anaconda login --username sleap-deps --password "$ANACONDA_PASSWORD"
       #     anaconda -v upload build.tensorflow/linux-64/*.tar.bz2 --label dev --user sleap-deps
       #     anaconda logout
-
-        # Upload conda package
-        # https://github.com/anaconda/anaconda-client/issues/529
-      # - name: Upload to Anaconda (Windows)
-      #   if: matrix.os == 'windows-2022'
-      #   env:
-      #     ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_SLEAP_DEPS_TOKEN }}
-      #   shell: powershell
-      #   run: |
-      #     anaconda -v upload "C:\c\build.tensorflow\win-64\*.tar.bz2" --label dev --user sleap-deps
-      #     anaconda logout
-      # - name: Upload to Anaconda (Ubuntu)
-      #   if: matrix.os == 'ubuntu-22.04'
-      #   env:
-      #     ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_SLEAP_DEPS_TOKEN }}
-      #   shell: bash -l {0}
-      #   run: |
-      #     anaconda -v upload build.tensorflow/linux-64/*.tar.bz2 --label dev --user sleap-deps
-      #     anaconda logout
       - name: Upload to Anaconda (MacOS)
         if: matrix.os == 'macos-14'
         env:
-          ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_SLEAP_DEPS_TOKEN }}
+          ANACONDA_PASSWORD: ${{ secrets.ANACONDA_PASSWORD }}
         shell: bash -l {0}
         run: |
+          anaconda login --username sleap-deps --password "$ANACONDA_PASSWORD"
           anaconda -v upload build.tensorflow_macos/osx-arm64/*.tar.bz2 --label dev --user sleap-deps
           anaconda logout
