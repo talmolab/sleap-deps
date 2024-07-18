@@ -12,6 +12,9 @@ about:
 build:
   number: 0
 
+source:
+  path: ../
+
 requirements:
   host:  
     - conda-forge::absl-py >=1.0.0
