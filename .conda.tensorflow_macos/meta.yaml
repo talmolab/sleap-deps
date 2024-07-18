@@ -1,7 +1,7 @@
 # Ref: https://docs.conda.io/projects/conda-build/en/latest/resources/define-metadata.html
 
 package:
-  name: tensorflow-macos
+  name: tensorflow
   version: 2.9.2a0
 
 about:
@@ -101,4 +101,4 @@ requirements:
 
 test:
   imports:
-    - tensorflow-macos
+    - tensorflow
