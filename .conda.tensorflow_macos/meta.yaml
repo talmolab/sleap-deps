@@ -13,6 +13,7 @@ build:
   number: 0
 
 source:
+  # can't find requirements.tensorflow_macos.txt without this
   path: ../
 
 requirements:
