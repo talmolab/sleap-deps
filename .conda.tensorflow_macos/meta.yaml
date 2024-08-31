@@ -2,22 +2,22 @@
 
 package:
   name: tensorflow
-  version: 2.9.2a0
+  version: 2.12.0
 
 about:
   home: https://tensorflow.org
   license: Apache License
-  summary: 'TensorFlow conda package based on the PyPI wheels for Apple Silicon Macs.'
+  summary: "TensorFlow conda package based on the PyPI wheels for Apple Silicon Macs."
 
 build:
-  number: 0
+  number: 3
 
 source:
   # can't find requirements.tensorflow_macos.txt without this
   path: ../
 
 requirements:
-  host:  
+  host:
     - conda-forge::absl-py >=1.0.0
     - conda-forge::astunparse >=1.6.0
     - conda-forge::cachetools <6.0,>=2.0.0
@@ -30,7 +30,7 @@ requirements:
     - conda-forge::grpcio <2.0,>=1.24.3
     - conda-forge::h5py >=2.9.0
     - conda-forge::idna <4,>=2.5
-    - conda-forge::keras <2.10.0,>=2.9.0rc0 # Required for tensorflow-macos
+    - conda-forge::keras <2.13.0,>=2.12.0 # Required for tensorflow-macos
     - conda-forge::keras-preprocessing >=1.1.1
     - anaconda::markdown >=2.6.8
     - conda-forge::MarkupSafe >=2.1.1
@@ -39,7 +39,7 @@ requirements:
     - conda-forge::opt-einsum >=2.3.2
     - conda-forge::packaging
     - conda-forge::pip
-    - conda-forge::protobuf <3.20,>=3.9.2
+    - conda-forge::protobuf >3.20 # Needed for pyside6, opencv, and tf compatibility
     - conda-forge::pyasn1 <0.7.0,>=0.4.6
     - conda-forge::pyasn1-modules >=0.2.1
     - conda-forge::python >=3.10.0,<3.11.0
@@ -50,7 +50,7 @@ requirements:
     - conda-forge::typing-extensions >=3.6.6
     - conda-forge::urllib3 <3,>=1.21.1
     - conda-forge::werkzeug >=1.0.1
-    - conda-forge::wrapt >=1.11.0
+    - conda-forge::wrapt >=1.11.0,<1.15.0 # https://github.com/tensorflow/tensorflow/issues/59869
 
   run:
     - conda-forge::absl-py >=1.0.0
@@ -65,7 +65,7 @@ requirements:
     - conda-forge::grpcio <2.0,>=1.24.3
     - conda-forge::h5py >=2.9.0
     - conda-forge::idna <4,>=2.5
-    - conda-forge::keras <2.10.0,>=2.9.0rc0 # Required for tensorflow-macos
+    - conda-forge::keras >=2.12.0,<2.13.0 # Required for tensorflow-macos==2.12.0
     - conda-forge::keras-preprocessing >=1.1.1
     - anaconda::markdown >=2.6.8
     - conda-forge::MarkupSafe >=2.1.1
@@ -74,7 +74,7 @@ requirements:
     - conda-forge::opt-einsum >=2.3.2
     - conda-forge::packaging
     - conda-forge::pip
-    - conda-forge::protobuf <3.20,>=3.9.2
+    - conda-forge::protobuf >3.20 # Needed for pyside6, opencv, and tf compatibility
     - conda-forge::pyasn1 <0.7.0,>=0.4.6
     - conda-forge::pyasn1-modules >=0.2.1
     - conda-forge::python >=3.10.0,<3.11.0
@@ -85,7 +85,7 @@ requirements:
     - conda-forge::typing-extensions >=3.6.6
     - conda-forge::urllib3 <3,>=1.21.1
     - conda-forge::werkzeug >=1.0.1
-    - conda-forge::wrapt >=1.11.0
+    - conda-forge::wrapt >=1.11.0,<1.15.0 # https://github.com/tensorflow/tensorflow/issues/59869
 
     # the following are pip installed, even when conda-forge versions are available
     # - conda-forge::flatbuffers <2,>=1.12
