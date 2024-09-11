@@ -1,0 +1,12 @@
+name: tf
+
+channels:
+  - conda-forge
+  - anaconda
+  - defaults
+
+dependencies:
+- conda-build
+- anaconda-client
+- conda-verify
+- pip
