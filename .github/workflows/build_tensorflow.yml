@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - elizabeth/add-windows-linux-tensorflow-conda-package
+      - elizabeth/add-tensorflow-macos-conda-package
 
     paths:
       - ".github/workflows/build_tensorflow.yml"
