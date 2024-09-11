@@ -10,7 +10,7 @@ about:
   summary: "TensorFlow conda package based on the PyPI wheels for Apple Silicon Macs."
 
 build:
-  number: 3
+  number: 4
 
 source:
   # can't find requirements.tensorflow_macos.txt without this
