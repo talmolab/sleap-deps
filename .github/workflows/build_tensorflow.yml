@@ -73,7 +73,7 @@ jobs:
       - name: Upload to Anaconda (Windows)
         if: matrix.os == "windows-2022"
         env:
-          ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_SLEAP_DEPS_TOKEN }}
+          ANACONDA_PASSWORD: ${{ secrets.ANACONDA_PASSWORD }}
         shell: powershell
         run: |
           anaconda login --username sleap-deps --password "$ANACONDA_PASSWORD"
@@ -83,7 +83,7 @@ jobs:
       - name: Upload to Anaconda (Ubuntu)
         if: matrix.os == "ubuntu-22.04"
         env:
-          ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_SLEAP_DEPS_TOKEN }}
+          ANACONDA_PASSWORD: ${{ secrets.ANACONDA_PASSWORD }}
         shell: bash -l {0}
         run: |
           anaconda login --username sleap-deps --password "$ANACONDA_PASSWORD"
