@@ -5,7 +5,7 @@ on:
     branches:
       - main
       - elizabeth/add-windows-linux-tensorflow-conda-package
-      
+
     paths:
       - '.github/workflows/build_tensorflow.yml'
       - '.conda.tensorflow/**'
@@ -25,14 +25,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Make conda prefix directory (Windows)
       - name: Make conda prefix directory (Windows)
         if: matrix.os == 'windows-2022'
         shell: powershell
         run: |
           New-Item -ItemType Directory -Force -Path C:\c
 
-      # Setup Miniconda
       # https://github.com/conda-incubator/setup-miniconda?tab=readme-ov-file#use-a-different-environment-name-or-path
       - name: Setup Miniconda (Windows)
         if: matrix.os == 'windows-2022'
@@ -78,6 +76,7 @@ jobs:
         run: |
           anaconda -v upload "C:\c\build.tensorflow\win-64\*.tar.bz2" --label dev --user sleap-deps
           anaconda logout
+
       - name: Upload to Anaconda (Ubuntu)
         if: matrix.os == 'ubuntu-22.04'
         env:
