@@ -65,13 +65,13 @@ jobs:
           conda list
 
       - name: Build conda package (Windows)
-        if: env.RUN_BUILD_JOB == 'true'
+        if: (runner.os == 'Windows') && (env.RUN_BUILD_JOB == 'true')
         shell: powershell
         run: |
           conda build --debug ${{ matrix.build-folder }} --output-folder ${{ matrix.env-prefix }}build.tensorflow -c conda-forge
 
       - name: Build conda package (not Windows)
-        if: env.RUN_BUILD_JOB == 'true'
+        if: (runner.os != 'Windows') && (env.RUN_BUILD_JOB == 'true')
         shell: bash -l {0}
         run: |
           conda build --debug ${{ matrix.build-folder }} --output-folder build.tensorflow -c conda-forge
