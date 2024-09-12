@@ -118,7 +118,6 @@ jobs:
 
       # Checkout the repository
       - name: Checkout
-        if: env.RUN_BUILD_JOB == 'true'
         uses: actions/checkout@v4
 
       - name: Setup Python
