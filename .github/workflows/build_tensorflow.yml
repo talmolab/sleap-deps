@@ -101,6 +101,10 @@ jobs:
             os-folder: osx-arm64
 
     steps:
+      # Checkout the repository
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Use current run id for conda package download
         shell: bash -l {0}
         if: env.RUN_BUILD_JOB == 'true'
@@ -116,15 +120,6 @@ jobs:
           run-id: ${{ env.RUN_ID }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: List items in current directory
-        run: |
-          ls .
-          ls -R build
-
-      # Checkout the repository
-      - name: Checkout
-        uses: actions/checkout@v4
-
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
@@ -136,6 +131,11 @@ jobs:
           python-version: "3.10"
           environment-file: environment.tensorflow.yml
           activate-environment: tf
+
+      - name: List items in current directory
+        run: |
+          ls .
+          ls -R build
 
       - name: Upload to Anaconda
         env:
