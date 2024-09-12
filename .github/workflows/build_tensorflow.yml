@@ -45,7 +45,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Make conda prefix directory (Windows)
-        if: matrix.os == "windows-2022"
+        if: matrix.os == 'windows-2022'
         shell: powershell
         run: |
           New-Item -ItemType Directory -Force -Path ${{ matrix.env-prefix }}
