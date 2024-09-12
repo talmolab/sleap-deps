@@ -116,6 +116,11 @@ jobs:
           run-id: ${{ env.RUN_ID }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
+      # Checkout the repository
+      - name: Checkout
+        if: env.RUN_BUILD_JOB == 'true'
+        uses: actions/checkout@v4
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
