@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - elizabeth/add-windows-linux-tensorflow-conda-package
 
     paths:
       - ".github/workflows/build_tensorflow.yml"
@@ -16,7 +15,7 @@ on:
 
 # If RUN_BUILD_JOB is set to true, then RUN_ID will be overwritten to the current run id
 env:
-  RUN_BUILD_JOB: false # TODO(LM): Set to true
+  RUN_BUILD_JOB: true
   RUN_ID: 10824742361 # Only used if RUN_BUILD_JOB is false (to dowload build artifact)
 
 jobs:
@@ -90,7 +89,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     needs: build
     strategy:
-      fail-fast: false # TODO(LM): Set to true
+      fail-fast: true
       matrix:
         os: ["ubuntu-22.04", "windows-2022", "macos-14"]
         include:
