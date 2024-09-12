@@ -30,10 +30,8 @@ jobs:
         include:
           - os-folder: linux-64
           - build-folder: .conda.tensorflow
-          - os-shell: bash -l {0}
           - os: "windows-2022"
             os-folder: win-64
-            os-shell: powershell
             env-prefix: C:\c\
           - os: "macos-14"
             os-folder: osx-arm64
@@ -66,11 +64,17 @@ jobs:
           conda info
           conda list
 
-      - name: Build conda package
+      - name: Build conda package (Windows)
         if: env.RUN_BUILD_JOB == 'true'
-        shell: ${{ matrix.os-shell }}
+        shell: powershell
         run: |
           conda build --debug ${{ matrix.build-folder }} --output-folder ${{ matrix.env-prefix }}build.tensorflow -c conda-forge
+
+      - name: Build conda package (not Windows)
+        if: env.RUN_BUILD_JOB == 'true'
+        shell: bash -l {0}
+        run: |
+          conda build --debug ${{ matrix.build-folder }} --output-folder build.tensorflow -c conda-forge
 
       # Upload the build artifact incase anaconda upload fails
       - name: Upload conda package artifact
