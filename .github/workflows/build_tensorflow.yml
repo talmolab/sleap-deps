@@ -16,15 +16,15 @@ on:
 
 # If RUN_BUILD_JOB is set to true, then RUN_ID will be overwritten to the current run id
 env:
-  RUN_BUILD_JOB: true
-  RUN_ID: 10713717594 # Only used if RUN_BUILD_JOB is false (to dowload build artifact)
+  RUN_BUILD_JOB: false # TODO(LM): Set to true
+  RUN_ID: 10824742361 # Only used if RUN_BUILD_JOB is false (to dowload build artifact)
 
 jobs:
   build:
     name: Build package (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: false # TODO(LM): Set to true
+      fail-fast: true
       matrix:
         os: ["ubuntu-22.04", "windows-2022", "macos-14"]
         include:
