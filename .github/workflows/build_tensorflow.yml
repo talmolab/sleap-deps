@@ -75,6 +75,7 @@ jobs:
   upload:
     name: Upload package (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
+    needs: build
     strategy:
       fail-fast: false # TODO(LM): Set to true
       matrix:
