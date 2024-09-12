@@ -28,10 +28,13 @@ jobs:
       matrix:
         os: ["ubuntu-22.04", "windows-2022", "macos-14"]
         include:
-          - os-folder: win-64
+          - os-folder: linux-64
           - build-folder: .conda.tensorflow
-          - os: "ubuntu-22.04"
-            os-folder: linux-64
+          - os-shell: bash -l {0}
+          - os: "windows-2022"
+            os-folder: win-64
+            os-shell: powershell
+            env-prefix: C:\c\
           - os: "macos-14"
             os-folder: osx-arm64
             build-folder: .conda.tensorflow_macos
@@ -41,13 +44,19 @@ jobs:
         if: env.RUN_BUILD_JOB == 'true'
         uses: actions/checkout@v4
 
+      - name: Make conda prefix directory (Windows)
+        if: matrix.os == "windows-2022"
+        shell: powershell
+        run: |
+          New-Item -ItemType Directory -Force -Path ${{ matrix.env-prefix }}
+
       - name: Setup Miniconda
         if: env.RUN_BUILD_JOB == 'true'
         uses: conda-incubator/setup-miniconda@v3.0.3
         with:
           python-version: "3.10"
           environment-file: environment.tensorflow.yml
-          activate-environment: tf
+          activate-environment: ${{ matrix.env-prefix }}tf
 
       - name: Print environment info
         if: env.RUN_BUILD_JOB == 'true'
@@ -57,17 +66,11 @@ jobs:
           conda info
           conda list
 
-      - name: Build conda package (${{ matrix.os }})
-        if: (runner.os == 'Windows') && (env.RUN_BUILD_JOB == 'true')
-        shell: powershell
+      - name: Build conda package
+        if: env.RUN_BUILD_JOB == 'true'
+        shell: matrix.os-shell
         run: |
-          conda build --debug ${{ matrix.build-folder }} --output-folder build.tensorflow -c conda-forge
-
-      - name: Build conda package (${{ matrix.os }})
-        if: (runner.os != 'Windows') && (env.RUN_BUILD_JOB == 'true')
-        shell: bash -l {0}
-        run: |
-          conda build --debug ${{ matrix.build-folder }} --output-folder build.tensorflow -c conda-forge
+          conda build --debug ${{ matrix.build-folder }} --output-folder ${{ matrix.env-prefix }}build.tensorflow -c conda-forge
 
       # Upload the build artifact incase anaconda upload fails
       - name: Upload conda package artifact
@@ -75,7 +78,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: tensorflow-build-${{ matrix.os-folder }}
-          path: build.tensorflow # Upload entire build directory
+          path: ${{ matrix.env-prefix }}build.tensorflow # Upload entire build directory
           retention-days: 1
 
   upload:
