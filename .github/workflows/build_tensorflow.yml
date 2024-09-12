@@ -68,7 +68,7 @@ jobs:
 
       - name: Build conda package
         if: env.RUN_BUILD_JOB == 'true'
-        shell: matrix.os-shell
+        shell: ${{ matrix.os-shell }}
         run: |
           conda build --debug ${{ matrix.build-folder }} --output-folder ${{ matrix.env-prefix }}build.tensorflow -c conda-forge
 
