@@ -134,6 +134,7 @@ jobs:
 
       - name: List items in current directory
         run: |
+          pwd
           ls .
           ls -R build
 
@@ -143,5 +144,5 @@ jobs:
         shell: bash -l {0}
         run: |
           anaconda login --username sleap-deps --password "$ANACONDA_PASSWORD"
-          anaconda -v upload "build/${{ matrix.os-folder }}/*.tar.bz2" --label dev --user sleap-deps
+          anaconda -v upload "./build/${{ matrix.os-folder }}/*.tar.bz2" --label dev --user sleap-deps
           anaconda logout
