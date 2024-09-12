@@ -116,6 +116,11 @@ jobs:
           run-id: ${{ env.RUN_ID }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: List items in current directory
+        run: |
+          ls .
+          ls -R build
+
       # Checkout the repository
       - name: Checkout
         uses: actions/checkout@v4
@@ -138,5 +143,5 @@ jobs:
         shell: bash -l {0}
         run: |
           anaconda login --username sleap-deps --password "$ANACONDA_PASSWORD"
-          anaconda -v upload build/${{ matrix.os-folder }}/*.tar.bz2 --label dev --user sleap-deps
+          anaconda -v upload "build/${{ matrix.os-folder }}/*.tar.bz2" --label dev --user sleap-deps
           anaconda logout
