@@ -105,6 +105,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.pyver }}
+
+      - name: Setup Miniconda
+        uses: conda-incubator/setup-miniconda@v3.0.3
+        with:
+          python-version: "3.10"
+          environment-file: environment.tensorflow.yml
+          activate-environment: tf
+
       - name: Use current run id for conda package download
         shell: bash -l {0}
         if: env.RUN_BUILD_JOB == 'true'
@@ -120,21 +132,9 @@ jobs:
           run-id: ${{ env.RUN_ID }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.pyver }}
-
-      - name: Setup Miniconda
-        uses: conda-incubator/setup-miniconda@v3.0.3
-        with:
-          python-version: "3.10"
-          environment-file: environment.tensorflow.yml
-          activate-environment: tf
-
       - name: List items in current directory
+        shell: bash -l {0}
         run: |
-          pwd
           ls .
           ls -R build
 
