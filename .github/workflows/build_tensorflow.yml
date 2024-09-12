@@ -122,7 +122,6 @@ jobs:
           python-version: ${{ matrix.pyver }}
 
       - name: Setup Miniconda
-        if: env.RUN_BUILD_JOB == 'true'
         uses: conda-incubator/setup-miniconda@v3.0.3
         with:
           python-version: "3.10"
@@ -130,7 +129,6 @@ jobs:
           activate-environment: tf
 
       - name: Upload to Anaconda
-        if: env.RUN_BUILD_JOB == 'true'
         env:
           ANACONDA_PASSWORD: ${{ secrets.ANACONDA_PASSWORD }}
         shell: bash -l {0}
