@@ -12,7 +12,7 @@ about:
   For GPU support, install cudatoolkit 11.3.1 and cudnn 8.2.1 which are available as conda packages on the default channel.'
 
 build:
-  number: 0
+  number: 1
 
 source:
   path: ../
@@ -24,7 +24,7 @@ requirements:
 
   host:
     - python>=3.10.0,<3.11.0
-    - numpy
+    - numpy<2.0
     - h5py
     - protobuf
     - certifi
@@ -36,7 +36,7 @@ requirements:
 
   run:
     - python>=3.10.0,<3.11.0
-    - numpy
+    - numpy<2.0
     - h5py
     - protobuf
     - certifi
